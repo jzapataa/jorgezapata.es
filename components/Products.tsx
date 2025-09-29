@@ -39,7 +39,7 @@ const Products: React.FC = () => {
               <img
                 src={product.image}
                 alt={product.name}
-                className="h-40 w-full object-cover"
+                className="h-70 w-full object-cover"
               />
               <div className="p-6 flex-1 flex flex-col">
                 <h4 className="text-xl font-semibold mb-2">{product.name}</h4>
@@ -59,7 +59,7 @@ const Products: React.FC = () => {
 
                 <a
                   href="#contact"
-                  className="mt-6 inline-block bg-gradient-to-r from-[#46EE7C] to-[#30CDBC] text-white font-semibold px-4 py-2 rounded-lg text-center hover:opacity-90 transition"
+                  className="mt-6 inline-block bg-gradient-to-r from-[#30CDBC] to-[#30CDBC] text-white font-semibold px-4 py-2 rounded-lg text-center hover:opacity-90 transition"
                 >
                   Saber más
                 </a>

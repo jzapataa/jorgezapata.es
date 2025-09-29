@@ -32,3 +32,8 @@ a:hover{
   border-radius: 9999px; /* rounded-full */
   height: 100%;
 }
+
+.portafolio:hover{
+  background-color: white;
+  color: #45417D;
+}

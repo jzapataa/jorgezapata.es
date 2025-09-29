@@ -32,7 +32,7 @@ export const Portfolio: React.FC = () => {
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 hover:shadow-2xl transition cursor-pointer"
+              className="portafolio bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 hover:shadow-2xl transition cursor-pointer"
             >
               <div className="relative w-full h-48">
                 <Image

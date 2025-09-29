@@ -9,12 +9,13 @@ import React from "react";
 
 const Home: React.FC = () => {
 return (
-  <>
+  <html lang="es">
     <Head>
       <title>Jorge Zapata | Desarrollo web</title>
       <meta
         name="description"
-        content="Soy Jorge ZSapata, especialista en desarrollo web y automatización de procesos cotidianos como chatbots y bots de correo" />
+        content="Soy Jorge Zapata, especialista en desarrollo web y automatización de procesos cotidianos como chatbots y bots de correo" />
+
     </Head>
 
     <div className="min-h-screen flex flex-col bg-gray-50 text-gray-800">
@@ -26,7 +27,7 @@ return (
         <Contact />
         </MainLayout>
     </div>
-  </>
+  </html>
 )
 
 

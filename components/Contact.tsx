@@ -33,10 +33,11 @@ const [form, setForm] = useState({ name: "", email: "", message: "" });
         >
           {/* Nombre */}
           <div>
-            <label className="block text-gray-700 font-medium mb-2">
+            <label htmlFor="name" className="block text-gray-700 font-medium mb-2">
               Nombre
             </label>
             <input
+              id="name"
               type="text"
               name="name"
               value={form.name}
@@ -48,10 +49,11 @@ const [form, setForm] = useState({ name: "", email: "", message: "" });
 
           {/* Email */}
           <div>
-            <label className="block text-gray-700 font-medium mb-2">
+            <label htmlFor="email" className="block text-gray-700 font-medium mb-2">
               Correo electrónico
             </label>
             <input
+              id="emaiL"
               type="email"
               name="email"
               value={form.email}
@@ -63,10 +65,11 @@ const [form, setForm] = useState({ name: "", email: "", message: "" });
 
           {/* Mensaje */}
           <div>
-            <label className="block text-gray-700 font-medium mb-2">
+            <label htmlFor="message" className="block text-gray-700 font-medium mb-2">
               Mensaje
             </label>
             <textarea
+              id="message"
               name="message"
               rows={5}
               value={form.message}
@@ -79,7 +82,7 @@ const [form, setForm] = useState({ name: "", email: "", message: "" });
           {/* Botón */}
           <button
             type="submit"
-            className="bg-gradient-to-r from-[#46EE7C] to-[#30CDBC] text-[#45417D] font-semibold px-6 py-3 rounded-lg shadow-md hover:opacity-90 transition cursor-pointer hover:text-white"
+            className="bg-gradient-to-r from-[#30CDBC] to-[#30CDBC] text-[#45417D] font-semibold px-6 py-3 rounded-lg shadow-md hover:opacity-90 transition cursor-pointer hover:text-white"
           >
             Enviar mensaje
           </button>
