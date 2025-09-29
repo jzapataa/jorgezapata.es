@@ -20,7 +20,7 @@ const AboutMe: React.FC = () => {
           </p>
           <p className="text-gray-700">
             Actualmente estoy trabajando en proyectos propios y ofreciendo servicios de software, 
-            combinando experiencia técnica y enfoque práctico para lograr resultados reales.
+            combinando experiencia técnica y enfoque práctico para lograr resultados reales.sss
           </p>
         </div>
       </div>
