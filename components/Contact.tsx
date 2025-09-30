@@ -18,9 +18,9 @@ const [form, setForm] = useState({ name: "", email: "", message: "" });
   return (
     <section id="contact" className="bg-white py-16 px-6">
       <div className="max-w-4xl mx-auto">
-        <h3 className="text-2xl md:text-3xl font-bold mb-8 text-center">
+        <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">
           📬 Contacto
-        </h3>
+        </h2>
 
         <p className="text-center text-gray-600 mb-12">
           ¿Tienes un proyecto en mente o quieres más información?  
