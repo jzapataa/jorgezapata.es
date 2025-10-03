@@ -34,5 +34,5 @@ export const getServerSideProps = async ({ res }) => {
 };
 
 export default function SiteMap() {
-  return null; // Next.js necesita un componente por defecto, pero no renderiza nada
+  return null; 
 }
