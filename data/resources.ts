@@ -51,8 +51,9 @@ export const resources: Resource[] = [
     version: "1.0",
     updatedAt: "2026-08-02",
     platform: ["iPhone", "Shortcuts", "Calendario"],
+    downloadUrl: "https://www.icloud.com/shortcuts/c06319515b254e80b8626c61430972ae",
     featured: true,
-    available: false,
+    available: true,
     whatItDoes: [
       "Pide el título de la reunión y te deja elegir si será hoy, mañana o en otra fecha.",
       "Configura la hora y una duración de 30, 60, 90 minutos o personalizada.",
