@@ -7,7 +7,7 @@ type ResourceCardProps = {
   downloadCount?: number | null;
 };
 
-export default function ResourceCard({ resource, downloadCount }: ResourceCardProps) {
+export default function ResourceCard({ resource, downloadCount = 0 }: ResourceCardProps) {
   return (
     <article className="resource-card">
       <Link href={`/recursos/${resource.slug}`} className="resource-card-main">
@@ -20,7 +20,7 @@ export default function ResourceCard({ resource, downloadCount }: ResourceCardPr
         <div className="resource-meta">
           <span>v{resource.version}</span>
           <span>{resource.platform.slice(0, 2).join(" · ")}</span>
-          {typeof downloadCount === "number" && <span>↓ {downloadCount.toLocaleString("es-ES")}</span>}
+          <span>↓ {(downloadCount ?? 0).toLocaleString("es-ES")}</span>
         </div>
       </Link>
       <DownloadLink
