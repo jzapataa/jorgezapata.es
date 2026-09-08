@@ -1,18 +1,17 @@
-// components/layouts/MainLayout.tsx
-import React, { ReactNode } from 'react';
-import Header from '../Header';
-import Footer from '../Footer';
+import type { ReactNode } from "react";
+import Header from "../Header";
+import Footer from "../Footer";
 
 type MainLayoutProps = {
   children: ReactNode;
 };
 
-export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
+export function MainLayout({ children }: MainLayoutProps) {
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50 text-gray-800">
+    <div className="site-frame">
       <Header />
-      <main className="flex-grow">{children}</main>
+      <main>{children}</main>
       <Footer />
     </div>
   );
-};
+}

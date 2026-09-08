@@ -1,31 +1,39 @@
-const AboutMe: React.FC = () => {
+import Image from "next/image";
+import SectionHeading from "./SectionHeading";
+
+export default function AboutMe() {
   return (
-    <section className="bg-white py-16 px-6">
-      <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-8">
-        {/* Imagen opcional */}
-        <div className="flex-shrink-0 w-48 h-48 md:w-64 md:h-64">
-          <img
-            src="avatar.webp" 
+    <section className="section-shell section-block" id="sobre-mi">
+      <div className="about-grid">
+        <div className="about-image-wrap">
+          <div className="about-image-glow" aria-hidden="true" />
+          <Image
+            src="/avatar.webp"
             alt="Jorge Zapata"
-            className="w-full h-full rounded-full object-cover shadow-lg"
+            width={280}
+            height={280}
+            className="about-image"
           />
         </div>
 
-        {/* Texto */}
-        <div className="flex-1 text-center md:text-left">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Hola, soy Jorge Zapata</h2>
-          <p className="text-gray-700 mb-4">
-            Soy desarrollador de software especializado en soluciones de digitalización y automatización. 
-            Me apasiona crear productos que faciliten procesos y ayuden a empresas a crecer de manera eficiente.
+        <div className="about-copy">
+          <SectionHeading eyebrow="SOBRE MÍ" title="Desarrollo software y siempre tengo algo entre manos." />
+          <p>
+            Trabajo principalmente en desarrollo de software y arquitectura de aplicaciones. Me interesan
+            especialmente el backend, la IA aplicada, la automatización y construir productos que resuelvan
+            problemas reales.
           </p>
-          <p className="text-gray-700">
-            Actualmente estoy trabajando en proyectos propios y ofreciendo servicios de software, 
-            combinando experiencia técnica y enfoque práctico para lograr resultados reales.
+          <p>
+            Esta web es el lugar donde junto esos proyectos, experimentos y recursos, y donde comparto lo
+            que voy aprendiendo mientras los construyo.
           </p>
+          <div className="about-pill-row" aria-label="Áreas de interés">
+            <span>Software</span>
+            <span>IA aplicada</span>
+            <span>Productos & automatización</span>
+          </div>
         </div>
       </div>
     </section>
   );
-};
-
-export default AboutMe;
+}

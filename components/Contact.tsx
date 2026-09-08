@@ -1,95 +1,74 @@
 import React, { useState } from "react";
 import { sendContact } from "./services/ContactService";
+import SectionHeading from "./SectionHeading";
 
-const Contact: React.FC = () => {
-const [form, setForm] = useState({ name: "", email: "", message: "" });
+export default function Contact() {
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [feedback, setFeedback] = useState("");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setForm((current) => ({ ...current, [event.target.name]: event.target.value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const response = await sendContact(form);
-    console.log(response);
-    alert(response.message);
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    setStatus("sending");
+    setFeedback("");
+
+    try {
+      const response = await sendContact(form);
+      setStatus("success");
+      setFeedback(response.message);
+      setForm({ name: "", email: "", message: "" });
+    } catch (error) {
+      setStatus("error");
+      setFeedback(error instanceof Error ? error.message : "No se ha podido enviar el mensaje.");
+    }
   };
 
   return (
-    <section id="contact" className="bg-white py-16 px-6">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">
-          📬 Contacto
-        </h2>
+    <section className="section-shell section-block" id="contacto">
+      <div className="contact-grid">
+        <div className="contact-copy">
+          <SectionHeading
+            eyebrow="CONTACTO"
+            title="Hablemos."
+            description="Si quieres escribirme sobre tecnología, proyectos, colaboración o trabajo, puedes hacerlo desde aquí."
+          />
 
-        <p className="text-center text-gray-600 mb-12">
-          ¿Tienes un proyecto en mente o quieres más información?  
-          Completa el formulario y te responderé lo antes posible.
-        </p>
-
-        <form
-          onSubmit={handleSubmit}
-          className="grid grid-cols-1 gap-6"
-        >
-          {/* Nombre */}
-          <div>
-            <label htmlFor="name" className="block text-gray-700 font-medium mb-2">
-              Nombre
-            </label>
-            <input
-              id="name"
-              type="text"
-              name="name"
-              value={form.name}
-              onChange={handleChange}
-              required
-              className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#30CDBC] focus:outline-none"
-            />
+          <div className="contact-links">
+            <a href="mailto:info@jorgezapata.es"><span>Email</span><strong>info@jorgezapata.es</strong></a>
+            <a href="https://linkedin.com/in/jorgezapatatech" target="_blank" rel="noreferrer"><span>LinkedIn</span><strong>/in/jorgezapatatech</strong></a>
+            <a href="https://github.com/jzapataa" target="_blank" rel="noreferrer"><span>GitHub</span><strong>@jzapataa</strong></a>
           </div>
+        </div>
 
-          {/* Email */}
-          <div>
-            <label htmlFor="email" className="block text-gray-700 font-medium mb-2">
-              Correo electrónico
-            </label>
-            <input
-              id="emaiL"
-              type="email"
-              name="email"
-              value={form.email}
-              onChange={handleChange}
-              required
-              className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#30CDBC] focus:outline-none"
-            />
+        <form className="contact-form" onSubmit={handleSubmit}>
+          <div className="form-row">
+            <div className="field">
+              <label htmlFor="name">Nombre</label>
+              <input id="name" name="name" type="text" value={form.name} onChange={handleChange} autoComplete="name" required />
+            </div>
+            <div className="field">
+              <label htmlFor="email">Email</label>
+              <input id="email" name="email" type="email" value={form.email} onChange={handleChange} autoComplete="email" required />
+            </div>
           </div>
-
-          {/* Mensaje */}
-          <div>
-            <label htmlFor="message" className="block text-gray-700 font-medium mb-2">
-              Mensaje
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              rows={5}
-              value={form.message}
-              onChange={handleChange}
-              required
-              className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#30CDBC] focus:outline-none"
-            ></textarea>
+          <div className="field">
+            <label htmlFor="message">Mensaje</label>
+            <textarea id="message" name="message" rows={6} value={form.message} onChange={handleChange} required />
           </div>
-
-          {/* Botón */}
-          <button
-            type="submit"
-            className="bg-gradient-to-r from-[#30CDBC] to-[#30CDBC] text-[#45417D] font-semibold px-6 py-3 rounded-lg shadow-md hover:opacity-90 transition cursor-pointer hover:text-white"
-          >
-            Enviar mensaje
+          <button className="button button-primary submit-button" type="submit" disabled={status === "sending"}>
+            {status === "sending" ? "Enviando…" : "Enviar mensaje"} <span aria-hidden="true">→</span>
           </button>
+          {feedback && (
+            <p className={`form-feedback ${status === "error" ? "form-feedback-error" : ""}`} role="status">
+              {feedback}
+            </p>
+          )}
         </form>
       </div>
     </section>
   );
-};
-
-export default Contact;
+}

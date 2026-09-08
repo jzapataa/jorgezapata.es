@@ -1,32 +1,34 @@
-// pages/sitemap.xml.js
-export const getServerSideProps = async ({ res }) => {
-  const baseUrl = "https://www.jorgezapata.es";
+import { resources } from "../data/resources";
 
-  const pages = [
-    { loc: `${baseUrl}/`, priority: 1.0 },
-    { loc: `${baseUrl}/#aboutme`, priority: 0.8 },
-    { loc: `${baseUrl}/#skills`, priority: 0.8 },
-    { loc: `${baseUrl}/#products`, priority: 0.7 },
-    { loc: `${baseUrl}/#portfolio`, priority: 0.7 },
-    { loc: `${baseUrl}/#contact`, priority: 0.9 },
+export const getServerSideProps = async ({ res }) => {
+  const baseUrl = "https://jorgezapata.es";
+  const urls = [
+    { loc: `${baseUrl}/`, priority: "1.0", changefreq: "weekly" },
+    { loc: `${baseUrl}/recursos`, priority: "0.9", changefreq: "weekly" },
+    ...resources.map((resource) => ({
+      loc: `${baseUrl}/recursos/${resource.slug}`,
+      priority: "0.8",
+      changefreq: "monthly",
+      lastmod: resource.updatedAt,
+    })),
   ];
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-  <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    ${pages
-      .map(
-        (page) => `
-      <url>
-        <loc>${page.loc}</loc>
-        <lastmod>${new Date().toISOString()}</lastmod>
-        <priority>${page.priority}</priority>
-      </url>
-    `
-      )
-      .join("")}
-  </urlset>`;
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls
+  .map(
+    ({ loc, priority, changefreq, lastmod }) => `  <url>
+    <loc>${loc}</loc>
+    ${lastmod ? `<lastmod>${lastmod}</lastmod>` : ""}
+    <changefreq>${changefreq}</changefreq>
+    <priority>${priority}</priority>
+  </url>`
+  )
+  .join("\n")}
+</urlset>`;
 
-  res.setHeader("Content-Type", "text/xml");
+  res.setHeader("Content-Type", "application/xml; charset=utf-8");
+  res.setHeader("Cache-Control", "public, s-maxage=3600, stale-while-revalidate=86400");
   res.write(sitemap);
   res.end();
 
@@ -34,5 +36,5 @@ export const getServerSideProps = async ({ res }) => {
 };
 
 export default function SiteMap() {
-  return null; 
+  return null;
 }

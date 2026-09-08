@@ -1,15 +1,13 @@
-// pages/_app.tsx
-import '../styles/globals.css';
-import type { AppProps } from 'next/app';
+import "../styles/globals.css";
+import type { AppProps } from "next/app";
 import Script from "next/script";
 
 export default function App({ Component, pageProps }: AppProps) {
-  return( 
+  return (
     <>
-        {/* Metricool */}
-        <Script
+      <Script
         id="metricool-tracker"
-        strategy="afterInteractive" // Se carga después de que la página sea interactiva
+        strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
             function loadScript(a){
@@ -28,25 +26,20 @@ export default function App({ Component, pageProps }: AppProps) {
         }}
       />
 
-        {/* Google Analytics */}
-        <Script
-          strategy="afterInteractive"
-          src={`https://www.googletagmanager.com/gtag/js?id=G-LWFTZ058XY`}
-        />
-        <Script
-          id="google-analytics"
-          strategy="afterInteractive"
-        >
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-LWFTZ058XY');
-          `}
-        </Script>
-  
-  <Component {...pageProps} />;
+      <Script
+        strategy="afterInteractive"
+        src="https://www.googletagmanager.com/gtag/js?id=G-LWFTZ058XY"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-LWFTZ058XY');
+        `}
+      </Script>
 
-  </>
+      <Component {...pageProps} />
+    </>
   );
 }

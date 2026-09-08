@@ -1,22 +1,93 @@
-const Header: React.FC = () => {
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useState } from "react";
+
+const navItems = [
+  { label: "Inicio", href: "/" },
+  { label: "Recursos", href: "/recursos" },
+  { label: "Proyectos", href: "/#proyectos" },
+  { label: "Sobre mí", href: "/#sobre-mi" },
+  { label: "Contacto", href: "/#contacto" },
+];
+
+export default function Header() {
+  const router = useRouter();
+  const [open, setOpen] = useState(false);
+
+  const isActive = (href: string) => {
+    if (href === "/") return router.pathname === "/";
+    if (href === "/recursos") return router.pathname.startsWith("/recursos");
+    return false;
+  };
+
   return (
-      <header className="bg-gradient-to-r from-[#45417D] to-[#30CDBC] h-[60vh] flex flex-col justify-center items-center px-6 text-center">
-      <div className="max-w-6xl mx-auto px-6 py-20 text-center">
-          <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
-            Impulsa tu negocio con digitalización y automatización
-          </h1>
-          <p className="text-white text-base md:text-lg max-w-xl mb-6 mx-auto text-center">
-            Soluciones digitales para hacer crecer tu empresa de forma eficiente.
-          </p>
+    <header className="site-nav-wrap">
+      <nav className="site-nav" aria-label="Navegación principal">
+        <Link href="/" className="brand" aria-label="Jorge Zapata, inicio">
+          <span>Jorge Zapata</span>
+          <span className="brand-mark" aria-hidden="true" />
+        </Link>
+
+        <button
+          type="button"
+          className="menu-button"
+          aria-expanded={open}
+          aria-controls="mobile-navigation"
+          aria-label={open ? "Cerrar menú" : "Abrir menú"}
+          onClick={() => setOpen((value) => !value)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+
+        <div className="desktop-nav">
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`nav-link ${isActive(item.href) ? "nav-link-active" : ""}`}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </div>
+
+        <div className="desktop-socials" aria-label="Redes profesionales">
+          <a href="https://github.com/jzapataa" target="_blank" rel="noreferrer">
+            GitHub
+          </a>
           <a
-            href="#prodcuts"
-            className="mt-6 bg-white font-semibold px-6 py-3 rounded-2xl shadow-md hover:bg-gray-100 transition"
+            href="https://linkedin.com/in/jorgezapatatech"
+            target="_blank"
+            rel="noreferrer"
           >
-            Ver productos
+            LinkedIn
           </a>
         </div>
-      </header>
-    );
-};
+      </nav>
 
-export default Header;
+      {open && (
+        <div id="mobile-navigation" className="mobile-nav">
+          {navItems.map((item) => (
+            <Link key={item.href} href={item.href} onClick={() => setOpen(false)}>
+              {item.label}
+            </Link>
+          ))}
+          <div className="mobile-socials">
+            <a href="https://github.com/jzapataa" target="_blank" rel="noreferrer">
+              GitHub
+            </a>
+            <a
+              href="https://linkedin.com/in/jorgezapatatech"
+              target="_blank"
+              rel="noreferrer"
+            >
+              LinkedIn
+            </a>
+          </div>
+        </div>
+      )}
+    </header>
+  );
+}

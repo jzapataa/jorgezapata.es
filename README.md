@@ -1,40 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# jorgezapata.es
 
-## Getting Started
+Hub personal de Jorge Zapata sobre software, IA, automatización y tecnología.
 
-First, run the development server:
+## Stack
+
+- Next.js 15 (Pages Router)
+- React 19
+- TypeScript
+- Tailwind CSS 4
+- API Routes
+- Neon Postgres para contadores de descargas
+- Google Analytics y Metricool
+
+## Desarrollo local
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+La web estará disponible en `http://localhost:3000`.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Variables de entorno
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### Contacto
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+```env
+MAIL_HOST=
+MAIL_PORT=
+MAIL_USER=
+MAIL_PASS=
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Descargas
 
-## Learn More
+```env
+DATABASE_URL=
+```
 
-To learn more about Next.js, take a look at the following resources:
+`DATABASE_URL` debe contener la connection string de PostgreSQL de Neon. No debe versionarse ninguna credencial.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+Antes de activar descargas, ejecuta `db/schema.sql` una vez en la base de datos.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Añadir un recurso
 
-## Deploy on Vercel
+Los recursos viven en `data/resources.ts`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Para publicar uno nuevo:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+1. añade sus metadatos al array `resources`;
+2. define un `slug` único;
+3. añade `downloadUrl` con el destino real;
+4. cambia `available` a `true` cuando esté listo para publicar;
+5. añade imágenes o capturas en `public/` cuando sean necesarias.
+
+La descarga pública siempre pasa por `/api/download/[slug]`. La API resuelve el destino desde `data/resources.ts`, incrementa el contador en PostgreSQL y redirige después al destino configurado.
+
+## Añadir un proyecto
+
+Los proyectos viven en `data/projects.ts`. Añadir uno nuevo no requiere modificar la home.
+
+## Validación
+
+```bash
+npm run build
+```
+
+La rama `feature/tech-hub-v1` incluye una validación temporal de GitHub Actions para mantener `package-lock.json` sincronizado y comprobar el build durante esta implementación.
