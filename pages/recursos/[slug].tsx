@@ -47,7 +47,7 @@ export default function ResourceDetailPage({ resource, downloadCount }: Resource
 
             <section className="detail-section">
               <p className="eyebrow">QUÉ HACE</p>
-              <h2>Una automatización pequeña para quitar trabajo repetitivo.</h2>
+              <h2>Un recurso práctico para resolver una tarea concreta.</h2>
               <ul className="detail-list">
                 {resource.whatItDoes.map((item) => <li key={item}>{item}</li>)}
               </ul>
@@ -123,7 +123,9 @@ export default function ResourceDetailPage({ resource, downloadCount }: Resource
   );
 }
 
-export const getServerSideProps: GetServerSideProps<ResourceDetailProps> = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps<ResourceDetailProps> = async ({ params, res }) => {
+  res.setHeader("Cache-Control", "public, s-maxage=60, stale-while-revalidate=300");
+
   const slug = typeof params?.slug === "string" ? params.slug : "";
   const resource = getResourceBySlug(slug);
   if (!resource) return { notFound: true };
