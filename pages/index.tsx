@@ -1,37 +1,39 @@
+import type { GetServerSideProps } from "next";
 import AboutMe from "@/components/AboutMe";
 import Contact from "@/components/Contact";
+import FeaturedResources from "@/components/FeaturedResources";
+import Hero from "@/components/Hero";
 import { MainLayout } from "@/components/layouts/MainLayout";
-import { Portfolio } from "@/components/Portfolio";
-import Products from "@/components/Products";
-import Skills from "@/components/Skills";
-import Head from "next/head";
-import React from "react";
+import Projects from "@/components/Projects";
+import SiteHead from "@/components/SiteHead";
+import TechStack from "@/components/TechStack";
+import { getDownloadCounts, type DownloadCounts } from "@/lib/downloads";
 
-const Home: React.FC = () => {
-return (
-  <html lang="es">
-    <Head>
-      <title>Jorge Zapata - Desarrollo web</title>
-      <meta
-        name="description"
-        content="Construyo páginas web modernas y chatbots personalizados. Digitaliza tu negocio conmigo 🚀" />
-
-    </Head>
-
-    <div className="min-h-screen flex flex-col bg-gray-50 text-gray-800">
-      <MainLayout>
-        <AboutMe />
-        <Skills />
-        <Products />
-        <Portfolio />
-        <Contact />
-        </MainLayout>
-    </div>
-  </html>
-)
-
-
+type HomeProps = {
+  downloadCounts: DownloadCounts;
 };
 
+export default function Home({ downloadCounts }: HomeProps) {
+  return (
+    <>
+      <SiteHead />
+      <MainLayout>
+        <Hero />
+        <FeaturedResources downloadCounts={downloadCounts} />
+        <TechStack />
+        <Projects />
+        <AboutMe />
+        <Contact />
+      </MainLayout>
+    </>
+  );
+}
 
-export default Home;
+export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
+  try {
+    return { props: { downloadCounts: await getDownloadCounts() } };
+  } catch (error) {
+    console.error("No se han podido cargar los contadores de descarga", error);
+    return { props: { downloadCounts: {} } };
+  }
+};
