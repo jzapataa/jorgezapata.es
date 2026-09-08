@@ -78,7 +78,9 @@ export default function ResourcesPage({ downloadCounts }: ResourcesPageProps) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps<ResourcesPageProps> = async () => {
+export const getServerSideProps: GetServerSideProps<ResourcesPageProps> = async ({ res }) => {
+  res.setHeader("Cache-Control", "public, s-maxage=60, stale-while-revalidate=300");
+
   try {
     return { props: { downloadCounts: await getDownloadCounts() } };
   } catch (error) {
