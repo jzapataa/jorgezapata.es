@@ -9,6 +9,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.1.0",
     "@tailwindcss/postcss": "^4.1.13",
     "next": "15.5.4",
     "nodemailer": "^7.0.6",
