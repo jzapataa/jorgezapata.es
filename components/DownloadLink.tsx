@@ -1,10 +1,12 @@
+import type { ReactNode } from "react";
+
 type DownloadLinkProps = {
   slug: string;
   name: string;
   category: string;
   available: boolean;
   className?: string;
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 export default function DownloadLink({
