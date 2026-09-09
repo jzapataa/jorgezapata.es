@@ -17,13 +17,11 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       </div>
       <div className="project-content">
         <div>
-          <div className="project-title-row">
-            <h3>{project.name}</h3>
-            {project.version && <span className="project-version">{project.version}</span>}
-          </div>
+          <h3>{project.name}</h3>
           <p>{project.description}</p>
         </div>
         <div className="project-tags">
+          {project.version && <span>{project.version}</span>}
           {project.technologies.map((technology) => <span key={technology}>{technology}</span>)}
         </div>
         <div className="project-actions">
