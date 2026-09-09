@@ -12,6 +12,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           alt={`Vista previa de ${project.name}`}
           fill
           className="project-image"
+          style={{ objectFit: project.imageFit ?? "cover" }}
           sizes="(max-width: 768px) 100vw, 45vw"
         />
       </div>
