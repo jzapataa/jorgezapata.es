@@ -17,7 +17,10 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       </div>
       <div className="project-content">
         <div>
-          <h3>{project.name}</h3>
+          <div className="project-title-row">
+            <h3>{project.name}</h3>
+            {project.version && <span className="project-version">{project.version}</span>}
+          </div>
           <p>{project.description}</p>
         </div>
         <div className="project-tags">
@@ -25,7 +28,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </div>
         <div className="project-actions">
           <a className="button button-primary button-small" href={project.url} target="_blank" rel="noreferrer">
-            Ver proyecto <span aria-hidden="true">→</span>
+            {project.urlLabel ?? "Ver proyecto"} <span aria-hidden="true">→</span>
           </a>
           {project.githubUrl && (
             <a className="button button-secondary button-small" href={project.githubUrl} target="_blank" rel="noreferrer">
