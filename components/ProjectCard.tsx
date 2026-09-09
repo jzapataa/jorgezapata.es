@@ -9,7 +9,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       <div className="project-image-wrap">
         <Image
           src={project.image}
-          alt={`Captura de ${project.name}`}
+          alt={`Vista previa de ${project.name}`}
           fill
           className="project-image"
           sizes="(max-width: 768px) 100vw, 45vw"
