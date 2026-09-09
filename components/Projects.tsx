@@ -7,7 +7,9 @@ export default function Projects() {
     <section className="section-shell section-block" id="proyectos">
       <SectionHeading eyebrow="PROYECTOS" title="Cosas que estoy construyendo." />
       <div className="projects-grid">
-        {projects.map((project) => <ProjectCard key={project.name} project={project} />)}
+        <div style={{ display: "grid", gap: 14 }}>
+          {projects.map((project) => <ProjectCard key={project.name} project={project} />)}
+        </div>
         <div className="project-placeholder" aria-label="Próximos proyectos">
           <span aria-hidden="true">+</span>
           <strong>Próximos proyectos</strong>

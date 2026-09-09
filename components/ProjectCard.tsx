@@ -9,9 +9,10 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       <div className="project-image-wrap">
         <Image
           src={project.image}
-          alt={`Captura de ${project.name}`}
+          alt={`Vista previa de ${project.name}`}
           fill
           className="project-image"
+          style={{ objectFit: project.imageFit ?? "cover" }}
           sizes="(max-width: 768px) 100vw, 45vw"
         />
       </div>
@@ -21,11 +22,12 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           <p>{project.description}</p>
         </div>
         <div className="project-tags">
+          {project.version && <span>{project.version}</span>}
           {project.technologies.map((technology) => <span key={technology}>{technology}</span>)}
         </div>
         <div className="project-actions">
           <a className="button button-primary button-small" href={project.url} target="_blank" rel="noreferrer">
-            Ver proyecto <span aria-hidden="true">→</span>
+            {project.urlLabel ?? "Ver proyecto"} <span aria-hidden="true">→</span>
           </a>
           {project.githubUrl && (
             <a className="button button-secondary button-small" href={project.githubUrl} target="_blank" rel="noreferrer">
