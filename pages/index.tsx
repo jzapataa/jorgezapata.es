@@ -1,6 +1,5 @@
 import type { GetServerSideProps } from "next";
 import AboutMe from "@/components/AboutMe";
-import Contact from "@/components/Contact";
 import FeaturedResources from "@/components/FeaturedResources";
 import Hero from "@/components/Hero";
 import { MainLayout } from "@/components/layouts/MainLayout";
@@ -23,7 +22,6 @@ export default function Home({ downloadCounts }: HomeProps) {
         <TechStack />
         <Projects />
         <AboutMe />
-        <Contact />
       </MainLayout>
     </>
   );
