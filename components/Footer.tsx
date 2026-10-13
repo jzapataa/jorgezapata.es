@@ -17,7 +17,6 @@ export default function Footer() {
           <Link href="/recursos">Recursos</Link>
           <Link href="/#proyectos">Proyectos</Link>
           <Link href="/#sobre-mi">Sobre mí</Link>
-          <Link href="/#contacto">Contacto</Link>
         </nav>
 
         <div className="footer-socials">
