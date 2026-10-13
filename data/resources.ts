@@ -20,29 +20,6 @@ export type Resource = {
 
 export const resources: Resource[] = [
   {
-    slug: "registro-gastos",
-    name: "Registro de gastos",
-    description:
-      "Registra un gasto desde el iPhone y envíalo a Notion con una estructura lista para controlar categorías, cuentas y presupuestos.",
-    category: "Atajo",
-    version: "1.0",
-    updatedAt: "2026-09-08",
-    platform: ["iPhone", "Shortcuts", "Notion"],
-    featured: false,
-    available: false,
-    whatItDoes: [
-      "Pide importe, concepto, categoría y cuenta desde un flujo rápido.",
-      "Envía el movimiento a una base de datos de Notion.",
-      "Reduce la fricción de registrar gastos en el momento en que ocurren.",
-    ],
-    requirements: ["iPhone con la app Atajos", "Cuenta de Notion", "Base de datos compatible en Notion"],
-    instructions: [
-      "Abre el recurso desde tu iPhone.",
-      "Añádelo a la app Atajos.",
-      "Configura la conexión con tu base de datos de Notion siguiendo las indicaciones del atajo.",
-    ],
-  },
-  {
     slug: "modo-bajo-consumo",
     name: "Modo bajo consumo",
     description:
