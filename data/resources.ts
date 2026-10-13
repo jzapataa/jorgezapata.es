@@ -52,7 +52,7 @@ export const resources: Resource[] = [
     updatedAt: "2026-10-13",
     platform: ["iPhone", "Shortcuts"],
     downloadUrl: "https://www.icloud.com/shortcuts/1067525cd67543df8d61da42696b58e1",
-    featured: false,
+    featured: true,
     available: true,
     whatItDoes: [
       "Activa el modo de bajo consumo para reducir el consumo de batería.",
@@ -80,7 +80,7 @@ export const resources: Resource[] = [
     updatedAt: "2026-10-13",
     platform: ["iPhone", "Shortcuts", "Ubicación"],
     downloadUrl: "https://www.icloud.com/shortcuts/24d393e673e84a9aa07dbb816ab294a5",
-    featured: false,
+    featured: true,
     available: true,
     whatItDoes: [
       "Muestra una notificación con el recordatorio que configures.",
