@@ -51,14 +51,6 @@ const betterTools = {
   share: true
 }`}</code></pre>
           </div>
-          <div className="mini-resource-panel">
-            <span className="mini-icon">⌁</span>
-            <div>
-              <strong>Registro de gastos</strong>
-              <small>Atajo de iPhone</small>
-            </div>
-            <span className="mini-arrow">→</span>
-          </div>
           <div className="build-label">
             <span>BUILD</span>
             <span>CREATE</span>
