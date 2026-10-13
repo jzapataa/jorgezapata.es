@@ -7,7 +7,6 @@ const navItems = [
   { label: "Recursos", href: "/recursos" },
   { label: "Proyectos", href: "/#proyectos" },
   { label: "Sobre mí", href: "/#sobre-mi" },
-  { label: "Contacto", href: "/#contacto" },
 ];
 
 export default function Header() {
