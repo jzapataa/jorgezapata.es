@@ -28,7 +28,7 @@ export const resources: Resource[] = [
     version: "1.0",
     updatedAt: "2026-09-08",
     platform: ["iPhone", "Shortcuts", "Notion"],
-    featured: true,
+    featured: false,
     available: false,
     whatItDoes: [
       "Pide importe, concepto, categoría y cuenta desde un flujo rápido.",
